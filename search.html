@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+    
+        <nav>
+            <a href="index.html">Directory</a>
+            <a href="#">Restaurants</a>
+            <a href="#">Search</a>
+            <a href="new.html">New</a>
+        </nav>
+    </header>
+
+    <section class="search-section">
+        <input type="text" id="searchInput" placeholder="Escribe un texto">
+        <button onclick="buscar()">Buscar</button>
+    </section>
+    
+    <main class="restaurants" id="restaurantList">
+        <!-- Aquí aparecerán los resultados -->
+    </main>
+    
+    <script>
+        const restaurantes = [
+            {
+                nombre: "Restaurantes Oku",
+                direccion: "Cl. 14 #30-190 Medellin",
+                descripcion: "Deliciosa comida de todo el Mundo",
+                imagen: "image/OKU.jpg"
+            },
+            {
+                nombre: "Mar y fuego",
+                direccion: "Cra. 37 #10b-4 Medellín",
+                descripcion: "Deliciosa comida vegana",
+                imagen: "image/Mar y fuego.jpg"
+            },
+            {
+                nombre: "Varadero",
+                direccion: "Cra. 51b #79-97 Barranquilla",
+                descripcion: "Comida del Mar",
+                imagen: "image/Varadero.jpg"
+            },
+            {
+                nombre: "La Comitiva",
+                direccion: "CL. 4 #34-32 Cali",
+                descripcion: "Lo mejor de la cultura Pacifica",
+                imagen: "image/comitiva.jpg"
+            }
+        ];
+    
+        function buscar() {
+            const texto = document.getElementById('searchInput').value.toLowerCase();
+            const resultado = restaurantes.filter(r => 
+                r.nombre.toLowerCase().includes(texto) || 
+                r.descripcion.toLowerCase().includes(texto)
+            );
+    
+            mostrarResultados(resultado);
+        }
+    
+        function mostrarResultados(lista) {
+            const contenedor = document.getElementById('restaurantList');
+            contenedor.innerHTML = '';
+    
+            if (lista.length === 0) {
+                contenedor.innerHTML = '<p>No se encontraron resultados.</p>';
+                return;
+            }
+            
+            lista.forEach(r => {
+                const card = `
+                    <div class="restaurant-card">
+                        <img src="${r.imagen}" alt="${r.nombre}">
+                        <h3>${r.nombre}</h3>
+                        <p>${r.direccion}</p>
+                        <p>${r.descripcion}</p>
+                    </div>
+                `;
+                contenedor.innerHTML += card;
+            });
+        }
+    </script>
+</body>
+</html>
