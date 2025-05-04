@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Restaurante</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav>
+            <a href="index.html">Directory</a>
+            <a href="#">Restaurants</a>
+            <a href="search.html">Search</a>
+            <a href="new.html">New</a>
+        </nav>
+    </header>
+
+    <div class="form">
+        <form id="restaurant-form" action="/save-restaurant" method="post" enctype="multipart/form-data">
+            <label for="restaurant-name">Nombre:</label>
+            <input type="text" id="restaurant-name" name="restaurant-name" required>
+
+            <label for="restaurant-description">Descripción:</label>
+            <input type="text" id="restaurant-description" name="restaurant-description" required>
+
+            <label for="restaurant-address">Dirección:</label>
+            <input type="text" id="restaurant-address" name="restaurant-address" required>
+
+            <label for="restaurant-image">Imagen:</label>
+            <input type="file" id="restaurant-image" name="restaurant-image" accept="image/*" required>
+
+            <button type="submit">Guardar Restaurante</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('restaurant-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formElement = event.target;
+            const formData = new FormData(formElement);
+
+            fetch('/save-restaurant', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('¡Restaurante guardado exitosamente!');
+                    formElement.reset();
+                    window.location.href = 'index.html';
+                } else {
+                    alert('No se pudo guardar el restaurante.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Ocurrió un error al guardar el restaurante.');
+            });
+        });
+    </script>
+</body>
+</html>
