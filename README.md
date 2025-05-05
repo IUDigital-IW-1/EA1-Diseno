@@ -3,8 +3,8 @@
 Proyecto desarrollado como parte de la Actividad 1 de la asignatura, siguiendo la guía proporcionada por la Institución Universitaria Digital de Antioquía.
 
 ## 👨‍💻 Desarrollador
-- **Nombre:** [Tu nombre aquí]
-- **Repositorio:** [URL de tu repositorio en GitHub]
+- **Nombre:** Lesly Quiceno - Cristian Vargas - Duvan Mieles
+- **Repositorio:** https://github.com/IUDigital-IW-1/EA1-Diseno
 
 ## 📝 Descripción del Proyecto
 
